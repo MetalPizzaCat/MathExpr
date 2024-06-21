@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgng6rnscdm75"]
+
+[ext_resource type="Texture2D" uid="uid://c0ar8hnxa60co" path="res://assets/evaluate.svg" id="1_1gom2"]
+[ext_resource type="Script" path="res://scripts/finish_node.gd" id="1_drppt"]
+
+[node name="finish_node" type="GraphNode"]
+offset_right = 208.0
+offset_bottom = 118.0
+title = "Result"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(0, 1, 0.0705882, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_drppt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Result = "
+
+[node name="ResultLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Result"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+icon = ExtResource("1_1gom2")
+
+[connection signal="pressed" from="HBoxContainer2/Button" to="." method="_on_button_pressed"]

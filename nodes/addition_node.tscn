@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx2yksoyql23x"]
+
+[ext_resource type="Script" path="res://scripts/addition_node.gd" id="1_vdv0g"]
+
+[node name="GraphNode" type="GraphNode"]
+offset_right = 160.0
+offset_bottom = 119.0
+title = "Add"
+script = ExtResource("1_vdv0g")
+input_count = 2
+
+[connection signal="delete_request" from="." to="." method="_on_delete_request"]

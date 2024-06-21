@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://jrrrkayrqwd3"]
+
+[ext_resource type="Script" path="res://editor/graph_edit.gd" id="1_40rm7"]
+[ext_resource type="PackedScene" uid="uid://d4cfh7o2ea5wf" path="res://editor/node_panel.tscn" id="5_rlg0o"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="." node_paths=PackedStringArray("node_popup")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+right_disconnects = true
+show_zoom_label = true
+script = ExtResource("1_40rm7")
+node_popup = NodePath("../PopupPanel")
+
+[node name="PopupPanel" parent="." instance=ExtResource("5_rlg0o")]
+visible = false
+
+[connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
+[connection signal="popup_request" from="GraphEdit" to="GraphEdit" method="_on_popup_request"]
