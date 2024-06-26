@@ -43,7 +43,7 @@ func create_node(data: NodeCreationData):
 	else:
 		node = data.node_script.new() as BaseNode
 		node.title = data.main_name
-		node.input_count = data.input_count
+		node.input_data = data.inputs
 	node.position_offset = get_viewport().get_mouse_position()
 	node.node_deleted.connect(_on_node_deleted)
 	add_child(node)

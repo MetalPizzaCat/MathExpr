@@ -1,11 +1,12 @@
 extends GraphNode
 class_name BaseNode
 
-signal node_deleted(name : String)
+signal node_deleted(name: String)
 
-@export var input_count: int = 1
+@export var input_data : Array[InputData] = []
 var inputs: Array[BaseNode] = []
-var manual_inputs: Array[SpinBox] = []
+var manual_inputs: Array[ManualInput] = []
+
 
 func generate_ui():
 	var close_button = Button.new()
@@ -16,15 +17,16 @@ func generate_ui():
 
 
 func _ready():
-	for i in range(0, input_count):
-		var spin_box = SpinBox.new()
-		spin_box.step = 0.1
-		spin_box.allow_greater = true
-		spin_box.allow_lesser = true
-		add_child(spin_box)
-		manual_inputs.append(spin_box)
-		set_slot(i, true, 0, Color.GREEN, i == 0, 0, Color.GREEN)
-	inputs.resize(input_count)
+	var ind = 0
+	for data in input_data:
+		var input = ManualInput.new()
+		input.text = data.text
+		input.is_input_number = data.is_number
+		manual_inputs.append(input)
+		add_child(input)
+		set_slot(ind, true, 0, Color.GREEN if data.is_number else Color.RED, ind == 0, 0, Color.GREEN)
+		ind += 1
+	inputs.resize(len(input_data))
 	generate_ui()
 
 
@@ -45,7 +47,7 @@ func disconnect_on_port(port: int):
 
 
 func get_value_for_input(port: int) -> float:
-	return manual_inputs[port].value if inputs[port] == null else inputs[port].get_data()
+	return manual_inputs[port].get_value() if inputs[port] == null else inputs[port].get_data()
 
 
 func get_data() -> float:

@@ -1,7 +1,7 @@
 extends Resource
 class_name NodeCreationData
 
-@export var input_count: int = 1
+@export var inputs : Array[InputData] = []
 @export var output_count: int = 1
 
 ## Class to attach to the created node

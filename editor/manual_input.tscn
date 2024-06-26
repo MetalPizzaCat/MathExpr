@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6t0ygdv65b66"]
+
+[ext_resource type="Script" path="res://editor/manual_input.gd" id="1_ubjkv"]
+
+[node name="ManualInput" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ubjkv")

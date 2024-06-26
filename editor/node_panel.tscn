@@ -1,25 +1,42 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4cfh7o2ea5wf"]
+[gd_scene load_steps=24 format=3 uid="uid://d4cfh7o2ea5wf"]
 
 [ext_resource type="Script" path="res://editor/node_panel.gd" id="1_esfky"]
+[ext_resource type="Script" path="res://scripts/input_data.gd" id="2_li0gj"]
 [ext_resource type="Script" path="res://scripts/addition_node.gd" id="2_nru3w"]
 [ext_resource type="Script" path="res://scripts/node_creation_data.gd" id="3_lt0sr"]
 [ext_resource type="Script" path="res://scripts/print_node.gd" id="4_xtoaq"]
 [ext_resource type="Script" path="res://scripts/finish_node.gd" id="5_umvbt"]
 [ext_resource type="PackedScene" uid="uid://cgng6rnscdm75" path="res://nodes/finish_node.tscn" id="6_c4o7w"]
 [ext_resource type="Script" path="res://scripts/branch_node.gd" id="7_b6u4y"]
+[ext_resource type="Script" path="res://scripts/loop_sum_node.gd" id="9_reyig"]
+
+[sub_resource type="Resource" id="Resource_jx6qt"]
+script = ExtResource("2_li0gj")
+text = ""
+is_number = true
+
+[sub_resource type="Resource" id="Resource_m2kfr"]
+script = ExtResource("2_li0gj")
+text = ""
+is_number = true
 
 [sub_resource type="Resource" id="Resource_aauok"]
 script = ExtResource("3_lt0sr")
-input_count = 2
+inputs = Array[ExtResource("2_li0gj")]([SubResource("Resource_jx6qt"), SubResource("Resource_m2kfr")])
 output_count = 1
 node_script = ExtResource("2_nru3w")
 use_prefab = false
 main_name = "Add"
 additional_names = Array[String](["+"])
 
+[sub_resource type="Resource" id="Resource_u2vsa"]
+script = ExtResource("2_li0gj")
+text = ""
+is_number = true
+
 [sub_resource type="Resource" id="Resource_5ybao"]
 script = ExtResource("3_lt0sr")
-input_count = 1
+inputs = Array[ExtResource("2_li0gj")]([SubResource("Resource_u2vsa")])
 output_count = 1
 node_script = ExtResource("4_xtoaq")
 use_prefab = false
@@ -28,7 +45,7 @@ additional_names = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_18ifd"]
 script = ExtResource("3_lt0sr")
-input_count = 1
+inputs = Array[ExtResource("2_li0gj")]([])
 output_count = 0
 node_script = ExtResource("5_umvbt")
 prefab_scene = ExtResource("6_c4o7w")
@@ -36,14 +53,53 @@ use_prefab = true
 main_name = "Finish"
 additional_names = Array[String](["End", "Result"])
 
+[sub_resource type="Resource" id="Resource_0yaf2"]
+script = ExtResource("2_li0gj")
+text = "Condition"
+is_number = false
+
+[sub_resource type="Resource" id="Resource_53tfr"]
+script = ExtResource("2_li0gj")
+text = "True"
+is_number = true
+
+[sub_resource type="Resource" id="Resource_xqy1o"]
+script = ExtResource("2_li0gj")
+text = "False"
+is_number = true
+
 [sub_resource type="Resource" id="Resource_ehk7e"]
 script = ExtResource("3_lt0sr")
-input_count = 3
+inputs = Array[ExtResource("2_li0gj")]([SubResource("Resource_0yaf2"), SubResource("Resource_53tfr"), SubResource("Resource_xqy1o")])
 output_count = 1
 node_script = ExtResource("7_b6u4y")
 use_prefab = false
 main_name = "Select"
 additional_names = Array[String](["Select", "Branch", "If"])
+
+[sub_resource type="Resource" id="Resource_ut0gy"]
+script = ExtResource("2_li0gj")
+text = "Start"
+is_number = true
+
+[sub_resource type="Resource" id="Resource_b0w0f"]
+script = ExtResource("2_li0gj")
+text = "End"
+is_number = true
+
+[sub_resource type="Resource" id="Resource_8q3i8"]
+script = ExtResource("2_li0gj")
+text = "Body"
+is_number = true
+
+[sub_resource type="Resource" id="Resource_yinlf"]
+script = ExtResource("3_lt0sr")
+inputs = Array[ExtResource("2_li0gj")]([SubResource("Resource_ut0gy"), SubResource("Resource_b0w0f"), SubResource("Resource_8q3i8")])
+output_count = 1
+node_script = ExtResource("9_reyig")
+use_prefab = false
+main_name = "Sum"
+additional_names = Array[String](["Sum"])
 
 [node name="PopupPanel" type="PopupPanel"]
 title = "Add new node"
@@ -51,7 +107,7 @@ position = Vector2i(462, 163)
 size = Vector2i(190, 343)
 visible = true
 script = ExtResource("1_esfky")
-nodes = Array[ExtResource("3_lt0sr")]([SubResource("Resource_aauok"), SubResource("Resource_5ybao"), SubResource("Resource_18ifd"), SubResource("Resource_ehk7e")])
+nodes = Array[ExtResource("3_lt0sr")]([SubResource("Resource_aauok"), SubResource("Resource_5ybao"), SubResource("Resource_18ifd"), SubResource("Resource_ehk7e"), SubResource("Resource_yinlf")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 4.0
