@@ -26,5 +26,9 @@ node_popup = NodePath("../PopupPanel")
 [node name="PopupPanel" parent="." instance=ExtResource("5_rlg0o")]
 visible = false
 
+[connection signal="connection_from_empty" from="GraphEdit" to="GraphEdit" method="_on_connection_from_empty"]
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
+[connection signal="connection_to_empty" from="GraphEdit" to="GraphEdit" method="_on_connection_to_empty"]
+[connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
 [connection signal="popup_request" from="GraphEdit" to="GraphEdit" method="_on_popup_request"]
+[connection signal="popup_hide" from="PopupPanel" to="GraphEdit" method="_on_popup_panel_popup_hide"]

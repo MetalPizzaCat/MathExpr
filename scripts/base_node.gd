@@ -1,10 +1,11 @@
 extends GraphNode
 class_name BaseNode
 
+signal node_deleted(name : String)
+
 @export var input_count: int = 1
 var inputs: Array[BaseNode] = []
 var manual_inputs: Array[SpinBox] = []
-
 
 func generate_ui():
 	var close_button = Button.new()
@@ -35,10 +36,12 @@ func can_connect_on_port(port: int) -> bool:
 
 func connect_on_port(port: int, node: BaseNode):
 	inputs[port] = node
+	manual_inputs[port].editable = false
 
 
 func disconnect_on_port(port: int):
 	inputs[port] = null
+	manual_inputs[port].editable = true
 
 
 func get_value_for_input(port: int) -> float:
@@ -51,4 +54,4 @@ func get_data() -> float:
 
 
 func _on_delete_request():
-	print("good bye :o")
+	node_deleted.emit(name)

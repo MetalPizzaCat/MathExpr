@@ -4,8 +4,10 @@ class_name FinishNode
 var input: BaseNode = null
 @onready var output_label: Label = $HBoxContainer/ResultLabel
 
+
 func _ready():
 	generate_ui()
+
 
 func connect_on_port(port: int, node: BaseNode):
 	if port == 0:
